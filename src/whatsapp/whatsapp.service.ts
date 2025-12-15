@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { SendTextMessageDto } from './dto/send-text-message.dto';
-import { MESSAGING_PRODUCT } from './enums/whatsapp.enum';
+import { MESSAGE_TYPE, MESSAGING_PRODUCT } from '../common/enums/whatsapp.enum';
 import { lastValueFrom } from 'rxjs';
 
 @Injectable()
@@ -9,13 +9,15 @@ export class WhatsappService {
   constructor(private readonly httpService: HttpService) {}
 
   /**
-   * Send a text message via WhatsApp Cloud API
+   * Send a text message via WhatsApp API
+   * @param sendTextMessageDto
+   * @returns Response from Meta API
    */
   async sendTextMessage(sendTextMessageDto: SendTextMessageDto) {
     const payload = {
       messaging_product: MESSAGING_PRODUCT.WHATSAPP,
       to: sendTextMessageDto.to,
-      type: 'text',
+      type: MESSAGE_TYPE.TEXT,
       text: {
         body: sendTextMessageDto.body,
         preview_url: sendTextMessageDto?.previewUrl,
@@ -37,6 +39,11 @@ export class WhatsappService {
   // TODO: Mark message as read
   async markMessageAsRead() {}
 
+  /**
+   * Common method to send requests to Meta WhatsApp API
+   * @param payload
+   * @returns Response from Meta API
+   */
   private async sendToMeta(payload: any) {
     try {
       const { data } = await lastValueFrom(

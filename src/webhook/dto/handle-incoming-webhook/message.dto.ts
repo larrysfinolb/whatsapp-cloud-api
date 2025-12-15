@@ -1,14 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsEnum, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { TextDto } from './text.dto';
-
-enum MessageType {
-  TEXT = 'text',
-  IMAGE = 'image',
-  VIDEO = 'video',
-  AUDIO = 'audio',
-  DOCUMENT = 'document',
-}
+import { MESSAGE_TYPE } from 'src/common/enums/whatsapp.enum';
 
 export class MessageDto {
   @IsString()
@@ -20,8 +13,8 @@ export class MessageDto {
   @IsString()
   timestamp: string;
 
-  @IsEnum(MessageType)
-  type: MessageType;
+  @IsEnum(MESSAGE_TYPE)
+  type: MESSAGE_TYPE;
 
   @IsOptional()
   @ValidateNested()

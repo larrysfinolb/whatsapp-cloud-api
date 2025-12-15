@@ -2,7 +2,7 @@ import {
   MESSAGE_TYPE,
   MESSAGING_PRODUCT,
   RECIPIENT_TYPE,
-} from '../enums/whatsapp.enum';
+} from '../../common/enums/whatsapp.enum';
 
 export interface WhatsappResponse {
   messaging_product: MESSAGING_PRODUCT;

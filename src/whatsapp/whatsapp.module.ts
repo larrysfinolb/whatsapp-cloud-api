@@ -16,5 +16,6 @@ import { envs } from 'src/config/envs';
     }),
   ],
   providers: [WhatsappService],
+  exports: [WhatsappService],
 })
 export class WhatsappModule {}

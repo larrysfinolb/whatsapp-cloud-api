@@ -2,7 +2,7 @@ import { IsArray, IsString, ValidateNested } from 'class-validator';
 import { EntryDto } from './entry.dto';
 import { Type } from 'class-transformer';
 
-export class HandleIncomingDto {
+export class HandleIncomingWebhookDto {
   @IsString()
   object: string;
 

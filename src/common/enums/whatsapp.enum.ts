@@ -8,4 +8,5 @@ export enum RECIPIENT_TYPE {
 
 export enum MESSAGE_TYPE {
   TEXT = 'text',
+  INTERACTIVE = 'interactive',
 }
